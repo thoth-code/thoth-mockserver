@@ -50,11 +50,8 @@ app.get('/', (req, res) => {
     res.send('THOTH API TEST SERVER');
 });
 
-// app.get('/note', (req, res) => {
-//     res.send(read('postit'));
-// });
-
-app.get(/\/note.*/, (req, res) => {
+app.get(/\/notes.*/, (req, res) => {
+    console.log("Search Note Requested:", req.url);
     res.send(read('postit'));
 })
 
