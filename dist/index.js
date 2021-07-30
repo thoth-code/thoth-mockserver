@@ -69,10 +69,8 @@ var write = function (name, data) { return (fs.writeFileSync(__dirname + '/json/
 app.get('/', function (req, res) {
     res.send('THOTH API TEST SERVER');
 });
-// app.get('/note', (req, res) => {
-//     res.send(read('postit'));
-// });
-app.get(/\/note.*/, function (req, res) {
+app.get(/\/notes.*/, function (req, res) {
+    console.log("Search Note Requested:", req.url);
     res.send(read('postit'));
 });
 app.post('/note', function (req, res) {
