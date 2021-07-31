@@ -99,6 +99,11 @@ app.post('/signup', (req, res) => {
     })
 });
 
+app.get('/flags', (req, res) => {
+    console.log("User Flags Requested:", req.url);
+    res.send(read('flag'));
+})
+
 /**
  * 
  * SERVER START

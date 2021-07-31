@@ -114,6 +114,10 @@ app.post('/signup', function (req, res) {
         res.send(JSON.stringify({ error: null }));
     });
 });
+app.get('/flags', function (req, res) {
+    console.log("User Flags Requested:", req.url);
+    res.send(read('flag'));
+});
 /**
  *
  * SERVER START
