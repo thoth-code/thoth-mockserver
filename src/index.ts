@@ -50,12 +50,12 @@ app.get('/', (req, res) => {
     res.send('THOTH API TEST SERVER');
 });
 
-app.get(/\/notes.*/, (req, res) => {
+app.get(/\/api\/notes.*/, (req, res) => {
     console.log("Search Note Requested:", req.url);
     res.send(read('postit'));
 })
 
-app.post('/note', (req, res) => {
+app.post('/api/note', (req, res) => {
     req.on("data", data => {
         console.log("New Note Post Requested : " + data);
         let oldJson = JSON.parse(read('postit')) as object[];
@@ -67,7 +67,7 @@ app.post('/note', (req, res) => {
     })
 });
 
-app.post('/signin', (req, res) => {
+app.post('/api/signin', (req, res) => {
     req.on("data", data => {
         console.log("Sign In Requested : " + data);
         jwt.sign({
@@ -92,14 +92,14 @@ app.post('/signin', (req, res) => {
     })
 });
 
-app.post('/signup', (req, res) => {
+app.post('/api/signup', (req, res) => {
     req.on("data", data => {
         console.log("Sign Up Requested : " + data);
         res.send(JSON.stringify({ error: null }));
     })
 });
 
-app.get('/flags', (req, res) => {
+app.get('/api/flags', (req, res) => {
     console.log("User Flags Requested:", req.url);
     res.send(read('flag'));
 })
