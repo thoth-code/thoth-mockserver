@@ -53,7 +53,7 @@ app.get('/', (req, res) => {
 app.get(/\/api\/notes.*/, (req, res) => {
     console.log("Search Note Requested:", req.url);
     res.send(read('postit'));
-})
+});
 
 app.post('/api/note', (req, res) => {
     req.on("data", data => {
@@ -64,7 +64,7 @@ app.post('/api/note', (req, res) => {
         let newJson = JSON.stringify(oldJson);
         write('postit', newJson);
         res.send(JSON.stringify({error: null}));
-    })
+    });
 });
 
 app.post('/api/signin', (req, res) => {
@@ -89,20 +89,42 @@ app.post('/api/signin', (req, res) => {
                 );
             }
         });
-    })
+    });
 });
 
 app.post('/api/signup', (req, res) => {
     req.on("data", data => {
         console.log("Sign Up Requested : " + data);
         res.send(JSON.stringify({ error: null }));
-    })
+    });
 });
 
 app.get('/api/flags', (req, res) => {
     console.log("User Flags Requested:", req.url);
     res.send(read('flag'));
-})
+});
+
+// TODO: delete note
+app.delete(/\/api\/note\/.*/, (req, res) => {
+    console.log("Delete note requested:", req.url);
+    res.send(JSON.stringify({ error: null }));
+});
+
+// TODO: edit note
+app.put('/api/note', (req, res) => {
+    req.on("data", data => {
+        console.log("Edit note requested : " + data);
+        res.send(JSON.stringify({ error: null }));
+    });
+});
+
+// TODO: attach note to my board
+app.post('/api/myboard', (req, res) => {
+    req.on("data", data => {
+        console.log("Attach note requested : " + data);
+        res.send(JSON.stringify({ error: null }));
+    });
+});
 
 /**
  * 
