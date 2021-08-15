@@ -12,8 +12,8 @@ import * as fs from 'fs';
  */
 const app = express();
 const port = 3000;
-const ACCESS_TOKEN_EXP = 60000*2;
-const REFRESH_TOKEN_EXP = 60000*5;
+const ACCESS_TOKEN_EXP = 60000*5;
+// const REFRESH_TOKEN_EXP = 60000*5;
 const options = {
     origin: 'http://saltwalks.ddns.net:8080', // 접근 권한을 부여하는 도메인
     credentials: true, // 응답 헤더에 Access-Control-Allow-Credentials 추가
@@ -71,9 +71,9 @@ app.post('/api/signin', (req, res) => {
     req.on("data", data => {
         console.log("Sign In Requested : " + data);
         jwt.sign({
-            test: 'test',
+            uid: 'test-uid-200',
         }, SECRKEY, {
-            expiresIn: '1h',
+            expiresIn: ACCESS_TOKEN_EXP,
         }, (err, token) => {
             if(err !== null) {
                 console.error(err);
