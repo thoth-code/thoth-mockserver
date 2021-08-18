@@ -104,13 +104,11 @@ app.get('/api/flags', (req, res) => {
     res.send(read('flag'));
 });
 
-// TODO: delete note
 app.delete(/\/api\/note\/.*/, (req, res) => {
     console.log("Delete note requested:", req.url);
     res.send(JSON.stringify({ error: null }));
 });
 
-// TODO: edit note
 app.put('/api/note', (req, res) => {
     req.on("data", data => {
         console.log("Edit note requested : " + data);
