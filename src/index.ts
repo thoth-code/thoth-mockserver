@@ -99,11 +99,6 @@ app.post('/api/signup', (req, res) => {
     });
 });
 
-app.get('/api/flags', (req, res) => {
-    console.log("User Flags Requested:", req.url);
-    res.send(read('flag'));
-});
-
 app.delete(/\/api\/note\/.*/, (req, res) => {
     console.log("Delete note requested:", req.url);
     res.send(JSON.stringify({ error: null }));
@@ -122,6 +117,12 @@ app.post('/api/myboard', (req, res) => {
         console.log("Attach note requested : " + data);
         res.send(JSON.stringify({ error: null }));
     });
+});
+
+// TODO: show my board
+app.get('/api/myboard', (req, res) => {
+    console.log("MyBoard requested : " + JSON.stringify(req.cookies));
+    res.send(read('postit'));
 });
 
 /**
