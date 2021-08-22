@@ -11,7 +11,7 @@ import * as fs from 'fs';
  * 
  */
 const app = express();
-const port = 3000;
+const port = 5000;
 const ACCESS_TOKEN_EXP = 60000*5;
 // const REFRESH_TOKEN_EXP = 60000*5;
 const options = {
@@ -123,6 +123,11 @@ app.post('/api/myboard', (req, res) => {
 app.get('/api/myboard', (req, res) => {
     console.log("MyBoard requested : " + JSON.stringify(req.cookies));
     res.send(read('postit'));
+});
+
+app.delete(/\/api\/myboard\/.*/, (req, res) => {
+    console.log("Delete note requested:", req.url);
+    res.send(JSON.stringify({ error: null }));
 });
 
 /**
