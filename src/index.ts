@@ -97,6 +97,11 @@ app.put('/api/note', (req, res) => {
     res.send(JSON.stringify({ error: null }));
 });
 
+app.put('/api/myboard', (req, res) => {
+    console.log("Edit my board requested : " + req.body);
+    res.send(JSON.stringify({ error: null }));
+});
+
 app.post('/api/myboard', (req, res) => {
     console.log("Attach note requested : " + req.body);
     res.send(JSON.stringify({ error: null }));
